@@ -1,0 +1,11 @@
+I made it work locally by exporting the project from glitch, 
+deleting everything except for src/ and server.js
+
+then doing: 
+npm install express
+npm install socket.io
+
+then linking the libraries in index.html (I have no idea of how it even worked on glitch).
+You can replace the p5 and p5.sound links with these cloud hosted ones:
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.js%22%3E</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/addons/p5.sound.min.js%22%3E</script>
