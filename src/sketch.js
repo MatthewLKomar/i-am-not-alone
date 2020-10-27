@@ -28,6 +28,11 @@ let sound = {
   darkness: null
 };
 
+
+let testSpriteObject;
+let genericCollider;
+let testSprite;
+
 function preload() {
   //background art goes here...
   background_image = loadImage(
@@ -61,7 +66,13 @@ function preload() {
   );
   cube1 = loadImage(
     "https://cdn.glitch.com/100f4346-1bb2-4f86-be35-969fbb47b625%2Fcube1_0007.png?v=1603414943832"
-  );
+    );
+
+    testSprite = loadSpriteSheet("../Assets/SpriteAnims/house/spritesheet.png", 600, 527, 7); //I'm gonna test the houses
+    testSpriteAnim = loadAnimation(testSpriteAnim);
+    testSpriteObject = new Sprite(testSpriteAnim, 600, 527, 7);
+
+    genericCollider = loadimage("../Assets/Mesh_GenericCollider.png"); //50 X 50
 }
 
 function setup() {
@@ -104,7 +115,11 @@ function setup() {
   //cube_test = createSprite(0,0, 300,300);
   
   // Audio to start before you press any key
-  getAudioContext().suspend();
+    getAudioContext().suspend();
+
+//init sprites
+    testSprite = new SpriteObject(0, 0, testSpriteObject, genericCollider);
+
 }
 
 // Called when a key is pressed so things should get started
@@ -132,6 +147,15 @@ function pressedToStart() {
   });
 }
 
+function loadTheSpritesInRow(sprite, spaceBetween) //loads the sprites backward
+{
+  for (var i = 0; i < numbOfSprites, i++; )
+  {
+    var spriteInstance = sprite;
+    spriteInstance.position = (x, y-spaceBetween*numbOfSprites);
+    spriteInstance.start();
+  }
+}
 // Called every frame to draw to the screen
 function draw() {
   background(100);
@@ -139,6 +163,7 @@ function draw() {
     drawStartScreen();
   } else {
     environment.start();
+    loadTheSpritesInRow(testSprite,200);
     // Dom's custom color stuff
     drawColorWaves();
     //get player pixel position
@@ -147,6 +172,7 @@ function draw() {
     //cube_test.animation.play();
   }
 }
+
 
 // Key input functions
 function keyPressed(event) {
