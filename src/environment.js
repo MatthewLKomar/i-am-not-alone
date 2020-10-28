@@ -37,11 +37,23 @@ class Environment {
 
     let interested = 254;
 
-    // TODO - directly check the pixels of the image, rather than drawing the image and then getting the colors from the canvas?
-    let rightColor = get(rightX, regY)[RBGA_Index];
-    let leftColor = get(leftX, regY)[RBGA_Index];
-    let topColor = get(regX, topY)[RBGA_Index];
-    let botColor = get(regX, botY)[RBGA_Index];
+    // Load the pixels array and then check the ones you need, rather than calling get() 4 times
+    loadPixels();
+    let d = pixelDensity();
+
+    let i_right = 4 * ( (regY * width * d) + (rightX * d) );
+    let i_left  = 4 * ( (regY * width * d) + (leftX * d) );
+    let i_top   = 4 * ( (topY * width * d) + (regX * d) );
+    let i_bot   = 4 * ( (botY * width * d) + (regX * d) );
+
+    let rightColor = pixels[i_right + RBGA_Index];
+    let leftColor = pixels[i_left + RBGA_Index];
+    let topColor = pixels[i_top + RBGA_Index];
+    let botColor = pixels[i_bot + RBGA_Index];
+    // let rightColor = get(rightX, regY)[RBGA_Index];
+    // let leftColor = get(leftX, regY)[RBGA_Index];
+    // let topColor = get(regX, topY)[RBGA_Index];
+    // let botColor = get(regX, botY)[RBGA_Index];
 
     //Stop player upon impacting interested color.
     this.player.possibleMoveDir[0] = topColor != interested;
