@@ -12,8 +12,6 @@ var UPDATE_TIME = 1000 / 3;
 
 let environment;
 
-//var cube_test;
-
 let background_image;
 let colliders_image;
 let noise_image;
@@ -29,52 +27,51 @@ let sound = {
 };
 
 
-let testSpriteObject;
 let genericCollider;
-let testSprite;
-let animation = [];
 var player_sprite_sheet;
 var player_animation;
+
 
 function preload() {
   //background art goes here...
   background_image = loadImage(
-    "https://cdn.glitch.com/100f4346-1bb2-4f86-be35-969fbb47b625%2Foffice%20test.jpg?v=1601588987850"
+    "Assets/Map_OfficeTest.jpg"
   );
   colliders_image = loadImage(
-    "https://cdn.glitch.com/100f4346-1bb2-4f86-be35-969fbb47b625%2Fmap.jpg?v=1601589011387"
+    "Assets/Map_Colliders_OfficeTest.jpg"
   );
   noise_image = loadImage(
-    "https://cdn.glitch.com/100f4346-1bb2-4f86-be35-969fbb47b625%2Fnoise%20large.png?v=1602789515463"
+    "Assets/VFX_noise large.png"
   );
   wall_vent_image = loadImage(
-    "https://cdn.glitch.com/100f4346-1bb2-4f86-be35-969fbb47b625%2Fwall%20vent.png?v=1603315668441"
+    "Assets/Mesh_wall vent.png"
   );
   wall_vent_backImg = loadImage(
-    "https://cdn.glitch.com/100f4346-1bb2-4f86-be35-969fbb47b625%2Fwall%20vent%20backImg.png?v=1603402916286"
+    "Assets/Mesh_Collider_wallvent.png"
   );
+  genericCollider = loadImage("Assets/Mesh_GenericCollider.png"); //50 X 50
+
   //sounds
   sound.ambience = loadSound(
-    "https://cdn.glitch.com/100f4346-1bb2-4f86-be35-969fbb47b625%2FSoft-ambient-background-music.mp3?v=1602182479229"
+    "Assets/Audio/Soft-ambient-background-music.mp3"
   );
   sound.darkness = loadSound(
-    "https://cdn.glitch.com/100f4346-1bb2-4f86-be35-969fbb47b625%2FHor%20Hor.mp3?v=1602180799277"
+    "Assets/Audio/Hor Hor.mp3"
   );
-  // charSprite = loadImage("https://cdn.sstatic.net/Sites/stackoverflow/img/404.svg");
-  charSprite = loadImage(
-    "https://cdn.glitch.com/100f4346-1bb2-4f86-be35-969fbb47b625%2FofficePhone.png?v=1603294555306"
-  );
-  cube0 = loadImage(
-    "https://cdn.glitch.com/100f4346-1bb2-4f86-be35-969fbb47b625%2Fcube1_0000.png?v=1603414943758"
-  );
-  cube1 = loadImage(
-    "https://cdn.glitch.com/100f4346-1bb2-4f86-be35-969fbb47b625%2Fcube1_0007.png?v=1603414943832"
-    );
 
-    var player_frames = loadJSON("Assets/SpriteAnims/cube/spritesheet.json");
-    player_sprite_sheet = loadSpriteSheet("Assets/SpriteAnims/cube/spritesheet.png", player_frames);
+  // Character sprites
+  charSprite = loadImage(
+    "Assets/VFX_officePhone.png" //Placeholder
+  );
+
+  // Spritesheet resources/examples
+  //  https://molleindustria.github.io/p5.play/docs/classes/SpriteSheet.html
+  //  https://molleindustria.github.io/p5.play/examples/index.html?fileName=sprites_with_sheet.js
+  //  http://molleindustria.github.io/p5.play/examples/index.html
+  loadJSON("Assets/SpriteAnims/cube/spritesheet.json", function(player_frames) {
+    player_sprite_sheet = loadSpriteSheet("Assets/SpriteAnims/cube/spritesheet.png", player_frames.frames);
     player_animation = loadAnimation(player_sprite_sheet);
-    genericCollider = loadImage("Assets/Mesh_GenericCollider.png"); //50 X 50
+  });
 }
 
 function setup() {
@@ -113,21 +110,9 @@ function setup() {
     wall_vent_image,
     wall_vent_backImg
   );
-  //var cube_animation = loadAnimation(cube0,cube1);
-  //cube_test = createSprite(0,0, 300,300);
-  // let frames = testSpriteJson.frames;
-  // for (let i = 0; i < frames.length; i++)
-  // {
-  //   let pos = frames[i].position;
-  //   let img = spritesheet.get(pos.x,pos.y,pos.w,pos.h);
-  //   animation.push(img);
-  // }
-  // console.log(animation);
   
   // Audio to start before you press any key
   getAudioContext().suspend();
-
-
 }
 
 // Called when a key is pressed so things should get started
@@ -155,15 +140,6 @@ function pressedToStart() {
   });
 }
 
-function loadTheSpritesInRow(sprite, spaceBetween) //loads the sprites backward
-{
-  for (var i = 0; i < numbOfSprites, i++; )
-  {
-    var spriteInstance = sprite;
-    spriteInstance.position = (x, y-spaceBetween*numbOfSprites);
-    spriteInstance.start();
-  }
-}
 // Called every frame to draw to the screen
 function draw() {
   background(100);
@@ -171,11 +147,10 @@ function draw() {
     drawStartScreen();
   } else {
     environment.start();
-    //image(animation[0],0,0);
-    //player_sprite_sheet.drawFrame("cube_0000.png",1,1)
-    Animation(player_animation, 350, 350);
-    //animation(testSpriteAnim,350,350);
-    //loadTheSpritesInRow(testSprite,200);
+
+    // TODO - use this for each office desk in the environment
+    animation(player_animation, 350, 350);
+
     // Dom's custom color stuff
     drawColorWaves();
     //get player pixel position 
