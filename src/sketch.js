@@ -32,6 +32,9 @@ let sound = {
 let testSpriteObject;
 let genericCollider;
 let testSprite;
+let animation = [];
+var player_sprite_sheet;
+var player_animation;
 
 function preload() {
   //background art goes here...
@@ -68,11 +71,9 @@ function preload() {
     "https://cdn.glitch.com/100f4346-1bb2-4f86-be35-969fbb47b625%2Fcube1_0007.png?v=1603414943832"
     );
 
-    testSprite = loadSpriteSheet("Assets/SpriteAnims/cube/spritesheet.png", 350, 350, 12); //I'm gonna test the cubes
-    testSpriteJson = loadJSON("Assets/SpriteAnims/cube/spritesheet.json");
-    //testSpriteAnim = loadAnimation(testSprite);
-    //testSpriteObject = new Sprite(testSpriteAnim, 600, 527, 7);
-
+    var player_frames = loadJSON("Assets/SpriteAnims/cube/spritesheet.json");
+    player_sprite_sheet = loadSpriteSheet("Assets/SpriteAnims/cube/spritesheet.png", player_frames);
+    player_animation = loadAnimation(player_sprite_sheet);
     genericCollider = loadImage("Assets/Mesh_GenericCollider.png"); //50 X 50
 }
 
@@ -114,8 +115,14 @@ function setup() {
   );
   //var cube_animation = loadAnimation(cube0,cube1);
   //cube_test = createSprite(0,0, 300,300);
-  let frames = spriteTest;
-
+  // let frames = testSpriteJson.frames;
+  // for (let i = 0; i < frames.length; i++)
+  // {
+  //   let pos = frames[i].position;
+  //   let img = spritesheet.get(pos.x,pos.y,pos.w,pos.h);
+  //   animation.push(img);
+  // }
+  // console.log(animation);
   
   // Audio to start before you press any key
   getAudioContext().suspend();
@@ -164,7 +171,10 @@ function draw() {
     drawStartScreen();
   } else {
     environment.start();
-    animation(testSpriteAnim,350,350);
+    //image(animation[0],0,0);
+    //player_sprite_sheet.drawFrame("cube_0000.png",1,1)
+    Animation(player_animation, 350, 350);
+    //animation(testSpriteAnim,350,350);
     //loadTheSpritesInRow(testSprite,200);
     // Dom's custom color stuff
     drawColorWaves();
