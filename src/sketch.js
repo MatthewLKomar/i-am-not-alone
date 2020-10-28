@@ -68,9 +68,10 @@ function preload() {
     "https://cdn.glitch.com/100f4346-1bb2-4f86-be35-969fbb47b625%2Fcube1_0007.png?v=1603414943832"
     );
 
-    testSprite = loadSpriteSheet("../Assets/SpriteAnims/house/spritesheet.png", 600, 527, 7); //I'm gonna test the houses
-    testSpriteAnim = loadAnimation(testSpriteAnim);
-    testSpriteObject = new Sprite(testSpriteAnim, 600, 527, 7);
+    testSprite = loadSpriteSheet("Assets/SpriteAnims/cube/spritesheet.png", 350, 350, 12); //I'm gonna test the cubes
+    testSpriteJSON = loadJSON('Assets/SpriteAnims/cube/spritesheet.json')
+    testSpriteAnim = loadAnimation(testSprite);
+    //testSpriteObject = new Sprite(testSpriteAnim, 600, 527, 7);
 
     genericCollider = loadimage("../Assets/Mesh_GenericCollider.png"); //50 X 50
 }
@@ -114,11 +115,11 @@ function setup() {
   //var cube_animation = loadAnimation(cube0,cube1);
   //cube_test = createSprite(0,0, 300,300);
   
-  // Audio to start before you press any key
-    getAudioContext().suspend();
 
-//init sprites
-    testSprite = new SpriteObject(0, 0, testSpriteObject, genericCollider);
+  
+  // Audio to start before you press any key
+  getAudioContext().suspend();
+
 
 }
 
