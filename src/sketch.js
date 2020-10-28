@@ -69,7 +69,8 @@ function preload() {
     );
 
     testSprite = loadSpriteSheet("Assets/SpriteAnims/cube/spritesheet.png", 350, 350, 12); //I'm gonna test the cubes
-    testSpriteAnim = loadAnimation(testSprite);
+    testSpriteJson = loadJSON("Assets/SpriteAnims/cube/spritesheet.json");
+    //testSpriteAnim = loadAnimation(testSprite);
     //testSpriteObject = new Sprite(testSpriteAnim, 600, 527, 7);
 
     genericCollider = loadImage("Assets/Mesh_GenericCollider.png"); //50 X 50
@@ -113,7 +114,7 @@ function setup() {
   );
   //var cube_animation = loadAnimation(cube0,cube1);
   //cube_test = createSprite(0,0, 300,300);
-  
+  let frames = spriteTest;
 
   
   // Audio to start before you press any key
@@ -167,7 +168,7 @@ function draw() {
     //loadTheSpritesInRow(testSprite,200);
     // Dom's custom color stuff
     drawColorWaves();
-    //get player pixel position
+    //get player pixel position 
     // createRectangleAtPixel();
     
     //cube_test.animation.play();
