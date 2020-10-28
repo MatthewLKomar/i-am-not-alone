@@ -61,7 +61,17 @@ function preload() {
   );
   cube1 = loadImage(
     "https://cdn.glitch.com/100f4346-1bb2-4f86-be35-969fbb47b625%2Fcube1_0007.png?v=1603414943832"
+<<<<<<< Updated upstream
   );
+=======
+    );
+
+    testSprite = loadSpriteSheet("../Assets/SpriteAnims/cube/spritesheet.png", 350, 350, 12); //I'm gonna test the cubes
+    testSpriteAnim = loadAnimation(testSpriteAnim);
+    //testSpriteObject = new Sprite(testSpriteAnim, 600, 527, 7);
+
+    genericCollider = loadimage("../Assets/Mesh_GenericCollider.png"); //50 X 50
+>>>>>>> Stashed changes
 }
 
 function setup() {
@@ -139,6 +149,11 @@ function draw() {
     drawStartScreen();
   } else {
     environment.start();
+<<<<<<< Updated upstream
+=======
+    animation(testSpriteAnim,350,350);
+    //loadTheSpritesInRow(testSprite,200);
+>>>>>>> Stashed changes
     // Dom's custom color stuff
     drawColorWaves();
     //get player pixel position
