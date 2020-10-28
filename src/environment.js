@@ -5,7 +5,7 @@ var MIN_VISIBLE_PLAYER_DIST = 140;
 var frame_factor;
 
 class Environment {
-  constructor(img, backimg, socket, charSprite, doorImg, doorBackImg) {
+  constructor(img, backimg, socket, charSprite, doorImg, doorBackImg, collider, decorAnim1, decorAnim2) {
     this.player = new Player(0, 0, charSprite);
     this.saved_state;
     this.socket = socket;
@@ -20,6 +20,52 @@ class Environment {
 
     //---- Doors ----
     this.initDoors(doorImg, doorBackImg);
+
+    //---- DecorAnim1 ----
+    this.decorAnim1 = decorAnim1;
+    this.collider = collider;
+    this.decorAnim1Sprites = [];
+    this.decorAnim1Count = 9;
+        
+  }
+  
+  makeSprites()
+  {
+    for(var i = 0; i < this.decorAnim1Count; i++)    
+    { //this is a fucking stupid way of doing things but I can't imagine a better way
+      //do you? 
+      // ----- Right Side ----- 
+      var LeftOffset = 146;
+      var RightTop = new SpriteObject((187*i)+LeftOffset,-940,this.decorAnim1,this.collider);
+      var RightMiddle1 = new SpriteObject((187*i)+LeftOffset,-475,this.decorAnim1,this.collider);
+      var RightMiddle2 = new SpriteObject((187*i)+LeftOffset,-40,this.decorAnim1,this.collider);
+      var RightBottom = new SpriteObject((187*i)+LeftOffset,420,this.decorAnim1,this.collider);
+
+      this.decorAnim1Sprites.push(RightTop);
+      this.decorAnim1Sprites.push(RightMiddle1);
+      this.decorAnim1Sprites.push(RightMiddle2);
+      this.decorAnim1Sprites.push(RightBottom);
+
+      // ---- Left Side ---- 
+      var LeftOffset = -190;
+      var BottomTop = new SpriteObject(-(187*i)+LeftOffset,-940,this.decorAnim1,this.collider);
+      var BottomMiddle1 = new SpriteObject(-(187*i)+LeftOffset,-475,this.decorAnim1,this.collider);
+      var BottomMiddle2 = new SpriteObject(-(187*i)+LeftOffset,-40,this.decorAnim1,this.collider);
+      var BottomBottom = new SpriteObject(-(187*i)+LeftOffset,420,this.decorAnim1,this.collider);
+
+      this.decorAnim1Sprites.push(BottomTop);
+      this.decorAnim1Sprites.push(BottomMiddle1);
+      this.decorAnim1Sprites.push(BottomMiddle2);
+      this.decorAnim1Sprites.push(BottomBottom);
+    }
+  }
+
+  drawSprites()
+  {
+    for(var i = 0; i < this.decorAnim1Sprites.length; i ++)
+    {
+      this.decorAnim1Sprites[i].start();
+    }
   }
 
   collidersLogic() {
@@ -90,15 +136,19 @@ class Environment {
     this.collidersLogic();
     //draw map background
 
-    image(
-      this.image,
-      0,
-      0,
-      this.image.width * this.scale,
-      this.image.height * this.scale
-    );
+    // image(
+    //   this.image,
+    //   0,
+    //   0,
+    //   //this.image.width * this.scale,
+    //   //this.image.height * this.scale
+    //   3464,
+    //   2474
+    // );
+    //background(83, 106, 86);
 
     this.player.start();
+    this.drawSprites();
     this.drawOtherPlayers();
     
     // Update doors then draw door images

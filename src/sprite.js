@@ -11,22 +11,20 @@ class Sprite{ //Sprite information data structure
     }
 
     start() {
-
     }
 
 }
 
 class SpriteObject {
-  constructor(x, y, sprite, collider) {
+  constructor(x, y, sprite_animation, collider) {
     // ---- Movement/Direction Logic
     this.position = createVector(x, y);
     this.collider = collider;
-      this.sprite = sprite;
+    this.sprite_animation = sprite_animation;
   }
 
   start() {
-    charSpriteSheet.loadPixels();
-    collider.loadPixels();
+    //collider.loadPixels();
     this.render();
     this.update();
   }
@@ -34,11 +32,11 @@ class SpriteObject {
   render() {
     push();
     //upscale the red collider
-    this.collider.resize(this.spriteWidth,this.spriteHeight);
+    //this.collider.resize(this.spriteWidth,this.spriteHeight);
     //move the collider scale goes here
-    image(this.collider,x,y);
+    //image(this.collider,x,y);
     //spritesheet anim goeshere
-    animation(sprite.animation, x, y);
+    animation(this.sprite_animation, this.position.x,this.position.y);
     pop();
   }
 

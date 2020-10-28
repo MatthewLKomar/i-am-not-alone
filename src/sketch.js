@@ -35,7 +35,7 @@ var player_animation;
 function preload() {
   //background art goes here...
   background_image = loadImage(
-    "Assets/Map_OfficeTest.jpg"
+    "Assets/Map_OfficeBackground.jpg"
   );
   colliders_image = loadImage(
     "Assets/Map_Colliders_OfficeTest.jpg"
@@ -108,9 +108,13 @@ function setup() {
     socket,
     charSprite,
     wall_vent_image,
-    wall_vent_backImg
+    wall_vent_backImg,
+    genericCollider,
+    player_animation,
+    0 //replace with another sprite animation if you want...
   );
   
+  environment.makeSprites();
   // Audio to start before you press any key
   getAudioContext().suspend();
 }
@@ -149,7 +153,6 @@ function draw() {
     environment.start();
 
     // TODO - use this for each office desk in the environment
-    animation(player_animation, 350, 350);
 
     // Dom's custom color stuff
     drawColorWaves();
