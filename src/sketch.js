@@ -69,11 +69,10 @@ function preload() {
     );
 
     testSprite = loadSpriteSheet("Assets/SpriteAnims/cube/spritesheet.png", 350, 350, 12); //I'm gonna test the cubes
-    testSpriteJSON = loadJSON('Assets/SpriteAnims/cube/spritesheet.json')
     testSpriteAnim = loadAnimation(testSprite);
     //testSpriteObject = new Sprite(testSpriteAnim, 600, 527, 7);
 
-    genericCollider = loadimage("../Assets/Mesh_GenericCollider.png"); //50 X 50
+    genericCollider = loadImage("Assets/Mesh_GenericCollider.png"); //50 X 50
 }
 
 function setup() {
@@ -164,7 +163,8 @@ function draw() {
     drawStartScreen();
   } else {
     environment.start();
-    loadTheSpritesInRow(testSprite,200);
+    animation(testSpriteAnim,350,350);
+    //loadTheSpritesInRow(testSprite,200);
     // Dom's custom color stuff
     drawColorWaves();
     //get player pixel position
