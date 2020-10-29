@@ -84,6 +84,21 @@ class Environment {
     }
   }
 
+  drawSpriteColliders(w,h) //This will have to go before drawSprite()... it's O(n^2) time complexity... Too Bad!
+  {
+    for(var i = 0; i < this.decorAnim1Sprites.length; i ++)
+    {
+      image(
+        this.collider,
+        this.decorAnim1Sprites[i].position.x,
+        this.decorAnim1Sprites[i].position.y,
+        w,
+        h,
+      );
+    }
+
+  }
+
   drawSprites()
   {
     for(var i = 0; i < this.decorAnim1Sprites.length; i ++)
@@ -145,31 +160,33 @@ class Environment {
     // draw wall image
     imageMode(CENTER);
 
-    image(
-      this.backimg,
-      0,
-      0,
-      this.backimg.width * this.scale,
-      this.backimg.height * this.scale
-    );
-    
+    // image(
+    //   this.backimg,
+    //   0,
+    //   0,
+    //   this.backimg.width * this.scale,
+    //   this.backimg.height * this.scale
+    // );
+    this.drawSpriteColliders(185,300);
     // Draw door backImages
     this.drawDoors(true);
 
     // Call player collider logic here
     this.collidersLogic();
     //draw map background
-
-    // image(
-    //   this.image,
-    //   0,
-    //   0,
-    //   //this.image.width * this.scale,
-    //   //this.image.height * this.scale
-    //   3464,
-    //   2474
-    // );
-    //background(83, 106, 86);
+    if (true) //for debug purposes 
+    {
+      image(
+        this.image,
+        0,
+        0,
+        //this.image.width * this.scale,
+        //this.image.height * this.scale
+        3464,
+        2474
+      );
+    }
+    
 
     this.player.start();
     this.drawSprites();
