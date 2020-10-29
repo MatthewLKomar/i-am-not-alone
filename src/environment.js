@@ -63,18 +63,21 @@ class Environment {
 
   makeSprites(x,y,sprites, rows, rowGap, colGap, gaps)
   {
+    let origX = x;
+    //let origY = y;
     for (var row = 0; row < rows; row++)
     {
+      origX = x;
       for (var spriteCount = 0; spriteCount < sprites; spriteCount++)
       {
         if (spriteCount % gaps == 0)
         {
-          //std::cout << " ";
+          origX+=colGap;
         }
         else {
-          var Cubical = new SpriteObject(x, y,this.decorAnim1,this.collider);
+          var Cubical = new SpriteObject(origX, y,this.decorAnim1,this.collider);
           this.decorAnim1Sprites.push(Cubical);
-          x+=colGap;
+          origX+=colGap;
         }
       }
       y+=rowGap;

@@ -113,8 +113,18 @@ function setup() {
     player_animation,
     0 //replace with another sprite animation if you want...
   );
+  //3464,
+  //2474
   
-  environment.makeSprites();
+  environment.makeSprites(
+    -1830, //x
+    -935, //y
+    20, //cubicals
+    5, //rows
+    450, //y offset between rows
+    185, //x offset between sprites
+    10 //sprites till gap
+  );
 
   // Initialize the office lines
   for (let i=0; i < current_office_lines.length; i++) {
