@@ -29,7 +29,7 @@ class Environment {
         
   }
   
-  makeSprites()
+  makeSpritesLegacy()
   {
     for(var i = 0; i < this.decorAnim1Count; i++)    
     { //this is a fucking stupid way of doing things but I can't imagine a better way
@@ -57,6 +57,27 @@ class Environment {
       this.decorAnim1Sprites.push(BottomMiddle1);
       this.decorAnim1Sprites.push(BottomMiddle2);
       this.decorAnim1Sprites.push(BottomBottom);
+    }
+  }
+
+
+  makeSprites(x,y,sprites, rows, rowGap, colGap, gaps)
+  {
+    for (var row = 0; row < rows; row++)
+    {
+      for (var spriteCount = 0; spriteCount < sprites; spriteCount++)
+      {
+        if (spriteCount % gaps == 0)
+        {
+          //std::cout << " ";
+        }
+        else {
+          var Cubical = new SpriteObject(x, y,this.decorAnim1,this.collider);
+          this.decorAnim1Sprites.push(Cubical);
+          x+=colGap;
+        }
+      }
+      y+=rowGap;
     }
   }
 
