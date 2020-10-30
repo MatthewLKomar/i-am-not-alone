@@ -24,7 +24,6 @@ var gameState = {
 app.use(express.static("src"));
 app.use(express.static("node_modules/p5/lib"));
 app.use(express.static("node_modules/p5/lib/addons"));
-
 //when a client connects
 io.on("connection", function(socket) {
   //this appears in the terminal
