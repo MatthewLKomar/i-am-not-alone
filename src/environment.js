@@ -5,7 +5,7 @@ var MIN_VISIBLE_PLAYER_DIST = 140;
 var frame_factor;
 
 class Environment {
-  constructor(img, backimg, img2, backimg2, socket, charAnim1,charAnim2,charAnim3, doorImg, doorBackImg, collider,decor1,decor2) {
+  constructor(img, backimg, img2, backimg2, socket, charAnim1,charAnim2,charAnim3, doorImg, doorBackImg, collider,collider2,decor1,decor2) {
     this.charAnim1 = charAnim1;
     this.charAnim2 = charAnim2;
     this.charAnim3 = charAnim3;
@@ -30,7 +30,9 @@ class Environment {
 
     //---- DecorAnim1 ----
     this.collider = collider;
+    this.othercollider =collider2;
     this.decorAnimSprites = [];
+    this.decorAnimTypes = [];
     this.decor1 = decor1;
     this.decor2 = decor2;
         
@@ -55,10 +57,13 @@ class Environment {
           if (AnimType == 1)
           {
             animi = new SpriteObject(origX, y,this.decor1,this.collider);
+            this.decorAnimTypes.push(1);
           }
           else
           {
             animi = new SpriteObject(origX, y,this.decor2,this.collider);
+            this.decorAnimTypes.push(0);
+
           }
           this.decorAnimSprites.push(animi);
           origX+=colGap;
@@ -68,19 +73,31 @@ class Environment {
     }
   }
 
-  drawSpriteColliders(w,h) //This will have to go before drawSprite()... it's O(2n) time complexity... Too Bad!
+  drawSpriteColliders(w1,h1,w2,h2) //This will have to go before drawSprite()... it's O(2n) time complexity... Too Bad!
   {
     for(var i = 0; i < this.decorAnimSprites.length; i ++)
     {
-      image(
-        this.collider,
-        this.decorAnimSprites[i].position.x,
-        this.decorAnimSprites[i].position.y,
-        w,
-        h,
-      );
+      if (this.decorAnimTypes[i] == 1)
+      {
+        image(
+          this.collider,
+          this.decorAnimSprites[i].position.x,
+          this.decorAnimSprites[i].position.y,
+          w1,
+          h1,
+        );
+      }
+      else
+      {
+        image(
+          this.collider,
+          this.decorAnimSprites[i].position.x-20,
+          this.decorAnimSprites[i].position.y+25,
+          w2,
+          h2,
+        );
+      }
     }
-
   }
 
   drawSprites()
@@ -151,14 +168,14 @@ class Environment {
       this.backimg2.width * this.scale2,
       this.backimg2.height * this.scale2
     );
-    this.drawSpriteColliders(185,300);
+    this.drawSpriteColliders(185,300,370,225);
     // Draw door backImages
     this.drawDoors(true);
 
     // Call player collider logic here
     this.collidersLogic();
     //draw map background
-    if (false) //for debug purposes 
+    if (true) //for debug purposes 
     {
       image(
         this.image,
