@@ -7,7 +7,7 @@ class Player {
     this.velocity = createVector();
     this.acceleration = createVector();
     this.radius = 18;
-    this.speed = 0.3; //don't go over 1
+    this.speed = 0.15; //don't go over 1
     // ----- movement controls here.  -----
 
     this.possibleMoveDir = [true, true, true, true]; //UP,LEFT,DOWN,RIGHT
@@ -40,8 +40,6 @@ class Player {
 
   update() {
     // ---- Movement Logic ----
-
-
     this.velocity.add(this.acceleration);
     
     // clamp velocity to 0 if you're up against a wall
