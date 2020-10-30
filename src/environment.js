@@ -178,7 +178,7 @@ class Environment {
     // Call player collider logic here
     this.collidersLogic();
     //draw map background
-    if (false) //for debug purposes 
+    if (true) //for debug purposes 
     {
       image(
         this.image,
@@ -186,14 +186,14 @@ class Environment {
         0,
         //this.image.width * this.scale,
         //this.image.height * this.scale
-        3464,
+        3800,
         2474
       );
     }
     
 
     this.player.start();
-    //this.drawSprites();
+    this.drawSprites();
     this.drawOtherPlayers();
     
     // Update doors then draw door images

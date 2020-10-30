@@ -72,9 +72,15 @@ function preload() {
   //  https://molleindustria.github.io/p5.play/docs/classes/SpriteSheet.html
   //  https://molleindustria.github.io/p5.play/examples/index.html?fileName=sprites_with_sheet.js
   //  http://molleindustria.github.io/p5.play/examples/index.html
-  loadJSON("Assets/SpriteAnims/cube/spritesheet.json", function(player_frames) {
-    player_sprite_sheet = loadSpriteSheet("Assets/SpriteAnims/cube/spritesheet.png", player_frames.frames);
-    player_animation = loadAnimation(player_sprite_sheet);
+  //Assets/SpriteAnims/avatar1/
+  loadJSON("Assets/SpriteAnims/avatar1/spritesheet.json", function(player_frames) {
+    player_spiteSheet = loadSpriteSheet("Assets/SpriteAnims/avatar1/spritesheet.png", player_frames.frames);
+    player_anim = loadAnimation(player_spiteSheet);
+  });
+
+  loadJSON("Assets/SpriteAnims/cube/spritesheet.json", function(cubical_frames) {
+    cubical_spiteSheet = loadSpriteSheet("Assets/SpriteAnims/cube/spritesheet.png", cubical_frames.frames);
+    cubical_anim = loadAnimation(cubical_spiteSheet);
   });
 }
 
@@ -112,11 +118,11 @@ function setup() {
     outdoor_image,
     outdoor_colliders_image,
     socket,
-    charSprite,
+    player_anim,
     wall_vent_image,
     wall_vent_backImg,
     genericCollider,
-    player_animation,
+    cubical_anim,
     0 //replace with another sprite animation if you want...
   );
   //3464,

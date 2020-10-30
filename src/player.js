@@ -1,7 +1,7 @@
 /// <reference path="TSDef/p5.global-mode.d.ts" />
 
 class Player {
-  constructor(x, y, charSprite) {
+  constructor(x, y, charAnim) {
     // ---- Movement/Direction Logic
     this.position = createVector(x, y);
     this.velocity = createVector();
@@ -14,13 +14,13 @@ class Player {
     this.controls = ["w", "a", "s", "d"]; //UP,LEFT,DOWN,RIGHT
     this.altControls = [UP_ARROW, LEFT_ARROW, DOWN_ARROW, RIGHT_ARROW]; //UP,LEFT,DOWN,RIGHT
     this.movement = [false, false, false, false]; //UP,LEFT,DOWN,RIGHT
-
+    this.charAnim = charAnim;
     //Avatar color
     this.color = color(0, 150, 0);
+    //this.mesh =  new SpriteObject(this.position.x,this.position.y,charAnim)
   }
 
   start() {
-    charSprite.loadPixels();
     this.render();
     this.update();
   }
@@ -31,37 +31,18 @@ class Player {
     //fill(this.color);
     //renders player avatar right here
     // image(charSprite, this.position.x, this.position.y);
-
+    animation(this.charAnim, this.position.x,this.position.y);
     ellipseMode(CENTER);
     ellipse(this.position.x, this.position.y, this.radius * 2);
-
+    //this.mesh.start();
     pop();
   }
 
   update() {
     // ---- Movement Logic ----
-    // this.collidersLogic();
-    // let prevPosition = this.position;
-    // TODO - check if you're fully inside a wall (left && right, or up && down) and move back to previous frame position if so
-    //    Otherwise, update previous frame position
+
 
     this.velocity.add(this.acceleration);
-    // Clamp velocity to 0 if you're up against a wall (but not stuck?)
-//     if (!this.possibleMoveDir[0] && this.possibleMoveDir[2]) {
-//       // UP
-//       this.velocity.y = max(0, this.velocity.y);
-//     } else if (!this.possibleMoveDir[2] && this.possibleMoveDir[0]) {
-//       //Down
-//       this.velocity.y = min(0, this.velocity.y);
-//     } 
-    
-//     if (!this.possibleMoveDir[1] && this.possibleMoveDir[3]) {
-//       // Left
-//       this.velocity.x = max(0, this.velocity.x);
-//     } else if (!this.possibleMoveDir[3] && this.possibleMoveDir[1]) {
-//       //Right
-//       this.velocity.x = min(0, this.velocity.x);
-//     }
     
     // clamp velocity to 0 if you're up against a wall
     if (!this.possibleMoveDir[0]) {
@@ -86,9 +67,7 @@ class Player {
     if (!this.possibleMoveDir[0] && !this.possibleMoveDir[2]) {
      this.velocity.y = this.speed * 10; 
     }
-    // else if (!this.possibleMoveDir[1] && !this.possibleMoveDir[3]) {
-    //  this.velocity.x = this.speed * 10;
-    // }
+
     
     // Apply the frame factor, update position, clear acceleration, and apply drag
     let thisFrameVelo = this.velocity.copy();
