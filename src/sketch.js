@@ -32,7 +32,9 @@ let sound = {
 let genericCollider;
 var player_sprite_sheet;
 var player_animation;
-
+var player_anim1;
+var player_anim2;
+var player_anim3;
 
 function preload() {
   //background art goes here...
@@ -74,9 +76,18 @@ function preload() {
   //  http://molleindustria.github.io/p5.play/examples/index.html
   //Assets/SpriteAnims/avatar1/
   loadJSON("Assets/SpriteAnims/avatar1/spritesheet.json", function(player_frames) {
-    player_spiteSheet = loadSpriteSheet("Assets/SpriteAnims/avatar1/spritesheet.png", player_frames.frames);
-    player_anim = loadAnimation(player_spiteSheet);
+    player_spiteSheet1 = loadSpriteSheet("Assets/SpriteAnims/avatar1/spritesheet.png", player_frames.frames);
+    player_anim1 = loadAnimation(player_spiteSheet1);
   });
+  loadJSON("Assets/SpriteAnims/avatar1/spritesheet.json", function(player_frames) {
+    player_spiteSheet2 = loadSpriteSheet("Assets/SpriteAnims/avatar2/spritesheet.png", player_frames.frames);
+    player_anim2 = loadAnimation(player_spiteSheet2);
+  });
+  loadJSON("Assets/SpriteAnims/avatar1/spritesheet.json", function(player_frames) {
+    player_spiteSheet3 = loadSpriteSheet("Assets/SpriteAnims/avatar3/spritesheet.png", player_frames.frames);
+    player_anim3 = loadAnimation(player_spiteSheet3);
+  });
+  player_anims = [player_anim1, player_anim2,player_anim3];
 
   loadJSON("Assets/SpriteAnims/cube/spritesheet.json", function(cubical_frames) {
     cubical_spiteSheet = loadSpriteSheet("Assets/SpriteAnims/cube/spritesheet.png", cubical_frames.frames);
@@ -118,7 +129,9 @@ function setup() {
     outdoor_image,
     outdoor_colliders_image,
     socket,
-    player_anim,
+    player_anim1,
+    player_anim2,
+    player_anim3,
     wall_vent_image,
     wall_vent_backImg,
     genericCollider,
