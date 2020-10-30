@@ -1,6 +1,6 @@
 /// <reference path="TSDef/p5.global-mode.d.ts" />
 
-var MIN_VISIBLE_PLAYER_DIST = 140;
+var MIN_VISIBLE_PLAYER_DIST = 180;
 
 var frame_factor;
 
@@ -23,7 +23,7 @@ class Environment {
 
     this.backimg2 = backimg2;
     this.image2 = img2;
-    this.scale2 = 2;
+    this.scale2 = 2.5;
 
     //---- Doors ----
     this.initDoors(doorImg, doorBackImg);
@@ -145,6 +145,14 @@ class Environment {
     imageMode(CENTER);
 
     image(
+      this.backimg,
+      0,
+      0,
+      this.backimg.width * this.scale,
+      this.backimg.height * this.scale
+    );
+
+    image(
       this.backimg2,
       0,
       -2474 / 2 - (this.image2.height * this.scale2) / 2,
@@ -158,7 +166,7 @@ class Environment {
     // Call player collider logic here
     this.collidersLogic();
     //draw map background
-    if (false) //for debug purposes 
+    if (true) //for debug purposes 
     {
       image(
         this.image,
@@ -185,8 +193,8 @@ class Environment {
     this.drawOtherPlayers();
     
     // Update doors then draw door images
-    this.updateDoors();
     this.drawDoors(false);
+    this.updateDoors();
 
     pop();
   }
@@ -258,7 +266,7 @@ class Environment {
   // ----- Doors -----
   initDoors(doorImg, doorBackImg) {
     this.doors = [
-      new Door(doorImg, doorBackImg, -10, -1300, 200, 0)
+      new Door(doorImg, doorBackImg, -10, -1240, 200, 0)
     ];
   }
 
@@ -281,7 +289,7 @@ class Environment {
 //         }
       }
       
-      let speed = 0.08;
+      let speed = 0.06;
       if (door.open) {
         door.position.x += (door.open_pos.x - door.position.x) * speed * frame_factor;
         door.position.y += (door.open_pos.y - door.position.y) * speed * frame_factor;
