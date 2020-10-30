@@ -163,9 +163,9 @@ class Environment {
     image(
       this.backimg2,
       0,
-      -2474 / 2 - (this.image2.height * this.scale2) / 2,
-      this.backimg2.width * this.scale2,
-      this.backimg2.height * this.scale2
+      -2474 / 2 - (this.image2.height * this.scale2) / 2 + 60,
+      this.image2.width * this.scale2,
+      this.image2.height * this.scale2
     );
     this.drawSpriteColliders(185,300);
     // Draw door backImages
@@ -182,14 +182,14 @@ class Environment {
         0,
         //this.image.width * this.scale,
         //this.image.height * this.scale
-        3800,
-        2474
+        3800 + 2500,
+        2474 - 12
       );
 
       image(
         this.image2,
         0,
-        -2474 / 2 - (this.image2.height * this.scale2) / 2,
+        -2474 / 2 - (this.image2.height * this.scale2) / 2 + 60,
         this.image2.width * this.scale2,
         this.image2.height * this.scale2
       );
@@ -274,7 +274,7 @@ class Environment {
   // ----- Doors -----
   initDoors(doorImg, doorBackImg) {
     this.doors = [
-      new Door(doorImg, doorBackImg, -10, -1240, 200, 0)
+      new Door(doorImg, doorBackImg, -10, -1210, 200, 0)
     ];
   }
 
@@ -297,21 +297,23 @@ class Environment {
 //         }
       }
       
-      let speed = 0.06;
-      if (door.open) {
-        door.position.x += (door.open_pos.x - door.position.x) * speed * frame_factor;
-        door.position.y += (door.open_pos.y - door.position.y) * speed * frame_factor;
-        // door.position = door.open_pos;
-      } else {
-        door.position.x += (door.closed_pos.x - door.position.x) * speed * frame_factor;
-        door.position.y += (door.closed_pos.y - door.position.y) * speed * frame_factor;
-        // door.position = door.closed_pos;
-      }
+      // let speed = 0.06;
+      // if (door.open) {
+      //   door.position.x += (door.open_pos.x - door.position.x) * speed * frame_factor;
+      //   door.position.y += (door.open_pos.y - door.position.y) * speed * frame_factor;
+      //   // door.position = door.open_pos;
+      // } else {
+      //   door.position.x += (door.closed_pos.x - door.position.x) * speed * frame_factor;
+      //   door.position.y += (door.closed_pos.y - door.position.y) * speed * frame_factor;
+      //   // door.position = door.closed_pos;
+      // }
     }
   }
   
   // Draw doors. If backImgPass == true, draw backImage instead of image
   drawDoors(backImgPass) {
+    if (backImgPass && this.visible_players > 0) return;
+    if (!backImgPass && this.visible_players <= 0) return;
     for (let door of this.doors) {
       let img = (backImgPass) ? door.backImage : door.image;
       image(img, door.position.x, door.position.y, img.width * door.scale, img.height * door.scale);

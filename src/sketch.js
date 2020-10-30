@@ -204,7 +204,7 @@ function pressedToStart() {
 
 // Called every frame to draw to the screen
 function draw() {
-  background(100);
+  background(0);
   if (click_to_start) {
     drawStartScreen();
   } else {
@@ -259,6 +259,7 @@ function windowResized() {
 // Draw the "press any key to start" screen
 function drawStartScreen() {
   push();
+  fill(100, 100, 100, 255);
   translate(width / 2, height / 2);
   textSize(64);
   textAlign(CENTER, CENTER);
