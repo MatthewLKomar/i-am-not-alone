@@ -30,6 +30,7 @@ let sound = {
 
 
 let genericCollider;
+let nongenericCollider;
 var player_sprite_sheet;
 var player_animation;
 var player_anim1;
@@ -56,7 +57,7 @@ function preload() {
     "Assets/portal_collider.png"
   );
   genericCollider = loadImage("Assets/Mesh_GenericCollider.png"); //50 X 50
-
+  nongenericCollider = loadImage("Assets/Mesh_GenericCollider2.png"); 
   //sounds
   sound.ambience = loadSound(
     "Assets/Audio/Soft-ambient-background-music.mp3"
@@ -140,6 +141,7 @@ function setup() {
     wall_vent_image,
     wall_vent_backImg,
     genericCollider,
+    nongenericCollider,
     cubical_anim,
     house_anim //replace with another sprite animation if you want...
   );
