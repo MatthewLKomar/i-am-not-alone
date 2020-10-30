@@ -93,6 +93,11 @@ function preload() {
     cubical_spiteSheet = loadSpriteSheet("Assets/SpriteAnims/cube/spritesheet.png", cubical_frames.frames);
     cubical_anim = loadAnimation(cubical_spiteSheet);
   });
+
+  loadJSON("Assets/SpriteAnims/house/spritesheet.json", function(house_frames) {
+    house_spritesheet = loadSpriteSheet("Assets/SpriteAnims/house/spritesheet.png", house_frames.frames);
+    house_anim = loadAnimation(house_spritesheet);
+  });
 }
 
 function setup() {
@@ -136,12 +141,13 @@ function setup() {
     wall_vent_backImg,
     genericCollider,
     cubical_anim,
-    0 //replace with another sprite animation if you want...
+    house_anim //replace with another sprite animation if you want...
   );
   //3464,
   //2474
   
   environment.makeSprites(
+    1,
     -1830, //x
     -935, //y
     20, //cubicals
@@ -149,6 +155,17 @@ function setup() {
     450, //y offset between rows
     185, //x offset between sprites
     10 //sprites till gap
+  );
+
+  environment.makeSprites(
+    0,
+    -1830, //x
+    -2800, //y
+    9, //Houses
+    4, //rows
+    400, //y offset between rows
+    500, //x offset between sprites
+    2 //sprites till gap
   );
 
   // Initialize the office lines
