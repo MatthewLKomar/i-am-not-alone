@@ -5,8 +5,11 @@ var MIN_VISIBLE_PLAYER_DIST = 140;
 var frame_factor;
 
 class Environment {
-  constructor(img, backimg, img2, backimg2, socket, charSprite, doorImg, doorBackImg, collider, decorAnim1, decorAnim2) {
-    this.player = new Player(0, 0, charSprite);
+  constructor(img, backimg, img2, backimg2, socket, charAnim1,charAnim2,charAnim3, doorImg, doorBackImg, collider, decorAnim1, decorAnim2) {
+    this.charAnim1 = charAnim1;
+    this.charAnim2 = charAnim2;
+    this.charAnim3 = charAnim3;
+    this.player = new Player(0, 0, this.charAnim1);
     this.saved_state;
     this.socket = socket;
 
@@ -33,38 +36,7 @@ class Environment {
         
   }
   
-  makeSpritesLegacy()
-  {
-    for(var i = 0; i < this.decorAnim1Count; i++)    
-    { //this is a fucking stupid way of doing things but I can't imagine a better way
-      //do you? 
-      // ----- Right Side ----- 
-      var LeftOffset = 146;
-      var RightTop = new SpriteObject((187*i)+LeftOffset,-940,this.decorAnim1,this.collider);
-      var RightMiddle1 = new SpriteObject((187*i)+LeftOffset,-475,this.decorAnim1,this.collider);
-      var RightMiddle2 = new SpriteObject((187*i)+LeftOffset,-40,this.decorAnim1,this.collider);
-      var RightBottom = new SpriteObject((187*i)+LeftOffset,420,this.decorAnim1,this.collider);
-
-      this.decorAnim1Sprites.push(RightTop);
-      this.decorAnim1Sprites.push(RightMiddle1);
-      this.decorAnim1Sprites.push(RightMiddle2);
-      this.decorAnim1Sprites.push(RightBottom);
-
-      // ---- Left Side ---- 
-      var LeftOffset = -190;
-      var BottomTop = new SpriteObject(-(187*i)+LeftOffset,-940,this.decorAnim1,this.collider);
-      var BottomMiddle1 = new SpriteObject(-(187*i)+LeftOffset,-475,this.decorAnim1,this.collider);
-      var BottomMiddle2 = new SpriteObject(-(187*i)+LeftOffset,-40,this.decorAnim1,this.collider);
-      var BottomBottom = new SpriteObject(-(187*i)+LeftOffset,420,this.decorAnim1,this.collider);
-
-      this.decorAnim1Sprites.push(BottomTop);
-      this.decorAnim1Sprites.push(BottomMiddle1);
-      this.decorAnim1Sprites.push(BottomMiddle2);
-      this.decorAnim1Sprites.push(BottomBottom);
-    }
-  }
-
-
+ 
   makeSprites(x,y,sprites, rows, rowGap, colGap, gaps)
   {
     let origX = x;
@@ -260,18 +232,9 @@ class Environment {
       // image(pointer, lPlayerState.x + i * 5, lPlayerState.y + i * 3);
       // temp player drawing
       push();
-      translate(lPlayerState.x, lPlayerState.y);
-      // translate(
-      //   width / 2 + (cos * width) / 2,
-      //   height / 2 + (sin * height) / 2
-      // );
+      //translate(lPlayerState.x, lPlayerState.y);
+      animation(this.charAnim2, lPlayerState.x, lPlayerState.y);
 
-      for (let i = 0; i < PETALS; i++) {
-        rotate((PI * 2) / PETALS + random());
-        fill(random() * 255, random() * 255, random() * 255, 255);
-        ellipse(0, 0, 20, 80);
-        // ellipse(0, 30, 20, 80);
-      }
       pop();
     }
   }

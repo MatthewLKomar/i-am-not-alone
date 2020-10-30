@@ -32,8 +32,8 @@ class Player {
     //renders player avatar right here
     // image(charSprite, this.position.x, this.position.y);
     animation(this.charAnim, this.position.x,this.position.y);
-    ellipseMode(CENTER);
-    ellipse(this.position.x, this.position.y, this.radius * 2);
+    //ellipseMode(CENTER);
+    //ellipse(this.position.x, this.position.y, this.radius * 2);
     //this.mesh.start();
     pop();
   }
