@@ -43,7 +43,7 @@ function preload() {
     "Assets/Map_Colliders_OfficeTest.jpg"
   );
   outdoor_image = loadImage("Assets/Outdoor Background.png");
-  outdoor_colliders_image = loadImage("Assets/Outdoor Background.png"); // TODO
+  outdoor_colliders_image = loadImage("Assets/Outdoor Colliders.png");
   noise_image = loadImage(
     "Assets/VFX_noise large.png"
   );

@@ -20,7 +20,7 @@ class Environment {
 
     this.backimg2 = backimg2;
     this.image2 = img2;
-    this.scale2 = 1;
+    this.scale2 = 2;
 
     //---- Doors ----
     this.initDoors(doorImg, doorBackImg);
@@ -164,13 +164,13 @@ class Environment {
     // draw wall image
     imageMode(CENTER);
 
-    // image(
-    //   this.backimg,
-    //   0,
-    //   0,
-    //   this.backimg.width * this.scale,
-    //   this.backimg.height * this.scale
-    // );
+    image(
+      this.backimg2,
+      0,
+      -2474 / 2 - (this.image2.height * this.scale2) / 2,
+      this.backimg2.width * this.scale2,
+      this.backimg2.height * this.scale2
+    );
     this.drawSpriteColliders(185,300);
     // Draw door backImages
     this.drawDoors(true);
@@ -188,6 +188,14 @@ class Environment {
         //this.image.height * this.scale
         3800,
         2474
+      );
+
+      image(
+        this.image2,
+        0,
+        -2474 / 2 - (this.image2.height * this.scale2) / 2,
+        this.image2.width * this.scale2,
+        this.image2.height * this.scale2
       );
     }
     
