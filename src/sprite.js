@@ -16,10 +16,10 @@ class Sprite{ //Sprite information data structure
 }
 
 class SpriteObject {
-  constructor(x, y, sprite_animation, collider) {
+  constructor(x, y, sprite_animation) {
     // ---- Movement/Direction Logic
     this.position = createVector(x, y);
-    this.collider = collider;
+    //this.collider = collider;
     this.sprite_animation = sprite_animation;
   }
 
