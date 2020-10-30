@@ -5,8 +5,8 @@ var MIN_VISIBLE_PLAYER_DIST = 140;
 var frame_factor;
 
 class Environment {
-  constructor(img, backimg, socket, charAnim, doorImg, doorBackImg, collider, decorAnim1, decorAnim2) {
-    this.player = new Player(0, 0, charAnim);
+  constructor(img, backimg, img2, backimg2, socket, charSprite, doorImg, doorBackImg, collider, decorAnim1, decorAnim2) {
+    this.player = new Player(0, 0, charSprite);
     this.saved_state;
     this.socket = socket;
 
@@ -17,6 +17,10 @@ class Environment {
     this.backimg = backimg;
     this.image = img;
     this.scale = 1;
+
+    this.backimg2 = backimg2;
+    this.image2 = img2;
+    this.scale2 = 1;
 
     //---- Doors ----
     this.initDoors(doorImg, doorBackImg);
