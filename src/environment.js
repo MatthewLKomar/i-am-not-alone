@@ -1,15 +1,23 @@
 /// <reference path="TSDef/p5.global-mode.d.ts" />
 
-var MIN_VISIBLE_PLAYER_DIST = 140;
+const MIN_VISIBLE_PLAYER_DIST = 180;
 
 var frame_factor;
+
+var starting_positions = [
+  { "x": -1500, "y": -700},
+  { "x": -1500, "y": 640},
+  { "x": 1500, "y": -700},
+  { "x": 1500, "y": 640},
+]
 
 class Environment {
   constructor(img, backimg, img2, backimg2, socket, charAnim1,charAnim2,charAnim3, doorImg, doorBackImg, collider,collider2,decor1,decor2) {
     this.charAnim1 = charAnim1;
     this.charAnim2 = charAnim2;
     this.charAnim3 = charAnim3;
-    this.player = new Player(0, 0, this.charAnim1);
+    let start_pos = starting_positions[Math.floor(random() * starting_positions.length)]
+    this.player = new Player(start_pos.x, start_pos.y, this.charAnim1);
     this.saved_state;
     this.socket = socket;
 
@@ -23,7 +31,7 @@ class Environment {
 
     this.backimg2 = backimg2;
     this.image2 = img2;
-    this.scale2 = 2;
+    this.scale2 = 2.5;
 
     //---- Doors ----
     this.initDoors(doorImg, doorBackImg);
@@ -162,6 +170,14 @@ class Environment {
     imageMode(CENTER);
 
     image(
+      this.backimg,
+      0,
+      0,
+      this.backimg.width * this.scale,
+      this.backimg.height * this.scale
+    );
+
+    image(
       this.backimg2,
       0,
       -2474 / 2 - (this.image2.height * this.scale2) / 2,
@@ -202,8 +218,8 @@ class Environment {
     this.drawOtherPlayers();
     
     // Update doors then draw door images
-    this.updateDoors();
     this.drawDoors(false);
+    this.updateDoors();
 
     pop();
   }
@@ -275,7 +291,7 @@ class Environment {
   // ----- Doors -----
   initDoors(doorImg, doorBackImg) {
     this.doors = [
-      new Door(doorImg, doorBackImg, 0, -600, 200, 0)
+      new Door(doorImg, doorBackImg, -10, -1240, 200, 0)
     ];
   }
 
@@ -298,7 +314,7 @@ class Environment {
 //         }
       }
       
-      let speed = 0.08;
+      let speed = 0.06;
       if (door.open) {
         door.position.x += (door.open_pos.x - door.position.x) * speed * frame_factor;
         door.position.y += (door.open_pos.y - door.position.y) * speed * frame_factor;
