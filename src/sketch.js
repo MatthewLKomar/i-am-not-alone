@@ -42,7 +42,7 @@ function preload() {
     "Assets/Map_OfficeBackground.jpg"
   );
   colliders_image = loadImage(
-    "Assets/Map_Colliders_OfficeTest.jpg"
+    "Assets/NewOfficeColliders.png"
   );
   outdoor_image = loadImage("Assets/Outdoor Background.png");
   outdoor_colliders_image = loadImage("Assets/Outdoor Colliders.png");
@@ -50,10 +50,10 @@ function preload() {
     "Assets/VFX_noise large.png"
   );
   wall_vent_image = loadImage(
-    "Assets/Mesh_wall vent.png"
+    "Assets/portal.png"
   );
   wall_vent_backImg = loadImage(
-    "Assets/Mesh_Collider_wallvent.png"
+    "Assets/portal_collider.png"
   );
   genericCollider = loadImage("Assets/Mesh_GenericCollider.png"); //50 X 50
 

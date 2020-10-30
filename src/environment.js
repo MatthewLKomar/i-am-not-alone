@@ -250,7 +250,7 @@ class Environment {
   // ----- Doors -----
   initDoors(doorImg, doorBackImg) {
     this.doors = [
-      new Door(doorImg, doorBackImg, 0, -600, 200, 0)
+      new Door(doorImg, doorBackImg, -10, -1300, 200, 0)
     ];
   }
 
