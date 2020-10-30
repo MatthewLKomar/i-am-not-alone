@@ -88,7 +88,7 @@ class Environment {
     }
   }
 
-  drawSpriteColliders(w,h) //This will have to go before drawSprite()... it's O(n^2) time complexity... Too Bad!
+  drawSpriteColliders(w,h) //This will have to go before drawSprite()... it's O(2n) time complexity... Too Bad!
   {
     for(var i = 0; i < this.decorAnim1Sprites.length; i ++)
     {
@@ -124,7 +124,7 @@ class Environment {
     //Let's choose the blue in RGBA for testing purposes...
     let RBGA_Index = 0;
 
-    let interested = 254;
+    let interested = 255;
 
     // Load the pixels array and then check the ones you need, rather than calling get() 4 times
     loadPixels();
@@ -178,7 +178,7 @@ class Environment {
     // Call player collider logic here
     this.collidersLogic();
     //draw map background
-    if (true) //for debug purposes 
+    if (false) //for debug purposes 
     {
       image(
         this.image,
@@ -193,7 +193,7 @@ class Environment {
     
 
     this.player.start();
-    this.drawSprites();
+    //this.drawSprites();
     this.drawOtherPlayers();
     
     // Update doors then draw door images
